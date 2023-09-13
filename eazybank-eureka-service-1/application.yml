@@ -1,1 +1,6 @@
-test: 'This is a test: eazybank-eureka-service-1'
+# DESC: Customized info for "/actuator/info" endpoint
+info:
+  app:
+    name: 'Eazy Bank Service Discovery: 1'
+    description: 'Eazy Bank Service Discovery'
+    version: '1.0.0'

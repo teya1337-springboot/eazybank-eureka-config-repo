@@ -5,10 +5,11 @@ eureka:
   instance:
     # DESC: Setting 'true' tells this service to register with eureka using its IP address instead of its hostname as obtained by the OS/DNS
     # RECOMMENDED: Setting 'true' to 'prefer-ip-address' is the recommended approach.
+    # IMPORTANT NOTE: You should set to false if setting up a cluster (use hostname for cluster)
     prefer-ip-address: false
     hostname: ${EUREKA_INSTANCE_HOSTNAME}
-    statusPageUrl: http://${EUREKA_INSTANCE_HOSTNAME}:${SERVER_PORT}/info
-    healthCheckUrl: http://${EUREKA_INSTANCE_HOSTNAME}:${SERVER_PORT}/info
+    statusPageUrl: http://${EUREKA_INSTANCE_HOSTNAME}:${SERVER_PORT}/actuator/info
+    healthCheckUrl: http://${EUREKA_INSTANCE_HOSTNAME}:${SERVER_PORT}/actuator/info
 
   client:
     # NOTE: Turn these settings "off" (to false) when you run Eureka locally in standalone mode (no cluster).
@@ -18,3 +19,20 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+
+# DESC: Actuator endpoint management
+management:
+  endpoints:
+    # DESC: Expose actuator endpoints
+    web:
+      exposure:
+        include: 'health,info,shutdown'
+
+  # DESC: For enabling the "/actuator/info" endpoint
+  info:
+    env:
+      enabled: true
+
+    # DESC: enable the "actuator/shutdown" endpoint
+    shutdown:
+      enabled: true
