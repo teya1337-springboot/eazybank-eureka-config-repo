@@ -6,6 +6,9 @@ eureka:
     # DESC: Setting 'true' tells this service to register with eureka using its IP address instead of its hostname as obtained by the OS/DNS
     # RECOMMENDED: Setting 'true' to 'prefer-ip-address' is the recommended approach.
     prefer-ip-address: true
+    hostname: ${SPRING_APPLICATION_NAME}
+    statusPageUrl: http://${eureka.instance.hostname}/info
+    healthCheckUrl: http://${eureka.instance.hostname}/info
 
   client:
     # NOTE: Turn these settings "off" (to false) when you run Eureka locally in standalone mode (no cluster).
