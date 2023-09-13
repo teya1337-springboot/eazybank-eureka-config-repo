@@ -26,7 +26,7 @@ management:
     # DESC: Expose actuator endpoints
     web:
       exposure:
-        include: 'health,info,shutdown'
+        include: '*'
 
   # DESC: For enabling the "/actuator/info" endpoint
   info:
