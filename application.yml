@@ -1,0 +1,12 @@
+server:
+  port: ${SERVER_PORT}
+
+eureka:
+  client:
+    # NOTE: Turn these settings "off" (to false) when you run Eureka locally in standalone mode (no cluster).
+    # REASON: We only have a single Eureka server and not a cluster of Eureka servers (not registering Eureka servers with each other nor fetching information from each other).
+    register-with-eureka: true
+    # This is a standalone Eureka server, don't try to fetch registry data from other Eureka servers
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
